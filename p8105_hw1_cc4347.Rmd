@@ -63,6 +63,7 @@ There are `r nrow(hw1q2)` rows and `r ncol(hw1q2)` columns. The mean value of x 
 
 ```{r}
 ggplot(hw1q2, aes(x = x, y = y, color = logical)) + geom_point()
+ggsave("scatter_plot.pdf", height = 4, width = 6)
 ```
 
 ```{r}
