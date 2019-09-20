@@ -7,11 +7,9 @@ output: github_document
 
 ##Problem 1
 
-#Creating a data frame:
-
 ```{r}
 library(tidyverse)
-hw1 = tibble(
+hw1q1 = tibble(
   samp = rnorm(8),
   vec_logical = c(samp > 0),
   vec_char = c("My", "name", "is", "Cassie", "and", "I", "love", "horses"),
@@ -19,18 +17,37 @@ hw1 = tibble(
                         "low", "medium"))
 )
 
-mean(pull(hw1, samp))
-mean(pull(hw1, vec_logical))
-mean(pull(hw1, vec_char))
-mean(pull(hw1, vec_factor))
+mean(pull(hw1q1, samp))
+mean(pull(hw1q1, vec_logical))
+mean(pull(hw1q1, vec_char))
+mean(pull(hw1q1, vec_factor))
 ```
 
-#Taking the mean of the previous variables is only possible for the samp and vec_logical variables. For the character and factor variables, the argument is not numeric or logical, so the result is returned as NA.
+#Taking the mean of the previous variables is only possible for the numeric samp and vec_logical variables. For the character and factor variables, the argument is not numeric or logical, so the result is returned as NA.
 
 ```{r, include = FALSE}
-as.numeric(pull(hw1, vec_logical))
-as.numeric(pull(hw1, vec_char))
-as.numeric(pull(hw1, vec_factor))
+as.numeric(pull(hw1q1, vec_logical))
+as.numeric(pull(hw1q1, vec_char))
+as.numeric(pull(hw1q1, vec_factor))
 ```
 
 #Conversion from logical and factor variables to numeric vectors is possible. For the logical vector, True and False were converted to corresponding 1s and 0s while for the factor vector the values were converted to 1, 2, or 3 depending on the level used. The character vector could not be converted to numeric because the characters used do not correspond to any number values, which is why I could not take the mean of it earlier.
+
+```{r}
+as.numeric(pull(hw1q1, vec_logical)) * pull(hw1q1, samp)
+as.factor(pull(hw1q1, vec_logical))
+          as.numeric(pull(hw1q1, vec_logical)) * pull(hw1q1, samp)
+```
+
+
+##Problem 2
+
+```{r}
+hw1q2 = tibble(
+  x = rnorm(500),
+  y = rnorm(500),
+  logical = c(x + y > 1),
+  
+)
+```
+
