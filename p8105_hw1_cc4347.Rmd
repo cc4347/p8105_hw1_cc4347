@@ -56,6 +56,21 @@ hw1q2 = tibble(
 ```
 
 #Inline code describing data frame
+
 There are `r nrow(hw1q2)` rows and `r ncol(hw1q2)` columns. The mean value of x is `r mean(pull(hw1q2, x))`, the median of x is `r median(pull(hw1q2, x))`, and the standard deviation of x is `r sd(pull(hw1q2, x))`. The proportion of cases for which x + y > 1 is `r sum(pull(hw1q2, logical))/500`.
 
+#Producing scatterplots
 
+```{r}
+ggplot(hw1q2, aes(x = x, y = y, color = logical)) + geom_point()
+```
+
+```{r}
+ggplot(hw1q2, aes(x = x, y = y, color = as.numeric(logical))) + geom_point()
+```
+
+```{r}
+ggplot(hw1q2, aes(x = x, y = y, color = as.factor(logical))) + geom_point()
+```
+
+The first and third scatterplots have the same color scale using two distinct colors for True and False, while the second scatterplot has a color gradient from light to dark.
