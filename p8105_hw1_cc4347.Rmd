@@ -5,8 +5,7 @@ date: "9/18/2019"
 output: github_document
 ---
 
-
-##Problem 1
+## Problem 1
 
 
 ```{r}
@@ -25,7 +24,9 @@ mean(pull(hw1q1, vec_char))
 mean(pull(hw1q1, vec_factor))
 ```
 
-Taking the mean of the previous variables is only possible for the numeric samp and vec_logical variables. For the character and factor variables, the argument is not numeric or logical, so the result is returned as NA.
+Taking the mean of the previous variables is only possible for the numeric samp and vec_logical variables. The character and factor variables don't refer to anything numeric, so the result is returned as NA.
+
+# Converting variables
 
 ```{r, include = FALSE}
 as.numeric(pull(hw1q1, vec_logical))
@@ -33,7 +34,7 @@ as.numeric(pull(hw1q1, vec_char))
 as.numeric(pull(hw1q1, vec_factor))
 ```
 
-Conversion from logical and factor variables to numeric vectors is possible. For the logical vector, True and False were converted to corresponding 1s and 0s while for the factor vector the values were converted to 1, 2, or 3 depending on the level used. The character vector could not be converted to numeric because the characters used do not correspond to any number values, which is why I could not take the mean of it earlier.
+Conversion from logical and factor variables to numeric vectors is possible. For the logical vector, True and False were converted to corresponding 1s and 0s while for the factor vector the values were converted to 1, 2, or 3 depending on the level used (low, medium, high). The character vector could not be converted to numeric because the characters used do not correspond to any number values, which is why I could not take the mean of it earlier.
 
 ```{r}
 as.numeric(pull(hw1q1, vec_logical)) * pull(hw1q1, samp)
@@ -42,8 +43,7 @@ as.factor(pull(hw1q1, vec_logical))
 ```
 
 
-##Problem 2
-
+## Problem 2
 
 ```{r}
 hw1q2 = tibble(
@@ -55,15 +55,15 @@ hw1q2 = tibble(
 )
 ```
 
-#Inline code describing data frame
+# Inline code describing data frame
 
 There are `r nrow(hw1q2)` rows and `r ncol(hw1q2)` columns. The mean value of x is `r mean(pull(hw1q2, x))`, the median of x is `r median(pull(hw1q2, x))`, and the standard deviation of x is `r sd(pull(hw1q2, x))`. The proportion of cases for which x + y > 1 is `r sum(pull(hw1q2, logical))/500`.
 
-#Producing scatterplots
+# Producing scatterplots
 
 ```{r}
 ggplot(hw1q2, aes(x = x, y = y, color = logical)) + geom_point()
-ggsave("scatter_plot.pdf", height = 4, width = 6)
+ggsave("scatter_plot.pdf", height = 6, width = 6)
 ```
 
 ```{r}
